@@ -104,3 +104,5 @@ An HTTP API for legal terms.
 
 
 * i will not create actual sops secrets in this example, but we can talk about this approach, since today i think it's one of the most reliable and convenient ways to deploy secrets
+
+** also the ci/cd is failing because it is a public repo and i wouldn't want to expose any sensitive login info, we can also go over this part
