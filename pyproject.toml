@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.9"
 fastapi = "^0.104.1"
 uvicorn = "^0.24.0"
+exceptiongroup = "
 
 
 [tool.poetry.group.dev.dependencies]

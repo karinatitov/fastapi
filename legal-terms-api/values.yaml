@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: karinatitov/legal-terms-api
-  tag: v1.0.0
+  tag: latest
 service:
   name: fastapi-service
   type: LoadBalancer
