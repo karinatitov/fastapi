@@ -31,7 +31,7 @@ jobs:
       run: docker build -t legal-terms-api .
 
     - name: Tag Docker image
-      run: docker tag karinatitov/legal-terms-api:latest
+      run: docker tag legal-terms-api karinatitov/legal-terms-api:latest
 
     - name: Push Docker image to registry
       run: docker push karinatitov/legal-terms-api:latest
