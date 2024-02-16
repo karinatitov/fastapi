@@ -1,0 +1,4 @@
+apiVersion: v2
+name: legal-terms-api
+description: A Helm chart for your FastAPI application
+version: 0.1.0

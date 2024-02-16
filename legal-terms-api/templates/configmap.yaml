@@ -1,0 +1,8 @@
+{{- if .Values.secrets.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include .Chart.Name . }}
+data:
+  sensitive_key: {{ .Files.Get "sops_secrets/sensitive_key" | b64enc | quote }}
+{{- end }}

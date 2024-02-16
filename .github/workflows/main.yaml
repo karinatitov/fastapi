@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install --no-interaction --no-ansi
+
+    - name: Run tests
+      run: poetry run pytest
+
+    - name: Build Docker image
+      run: docker build -t legal-terms-api .
+
+    - name: Push Docker image to registry
+      run: docker push karinatitov/legal-terms-api:latest
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} # using github secrets
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }} # using github secrets
+
+    - name: Package Helm chart
+      run: |
+        helm package legal-terms-api
+        mv legal-terms-api-*.tgz charts/
+      working-directory: ./path/to/your/repo
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f kubernetes/
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }} # using github secrets

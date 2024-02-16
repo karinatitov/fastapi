@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: karinatitov/legal-terms-api
+  tag: v1.0.0
+service:
+  name: fastapi-service
+  type: LoadBalancer
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  host: your-app.example.com  # placeholder for actual domain or IP
+
+secrets:
+  enabled: true
+  sensitive_key: "encrypted:sops_secrets/sensitive_key"
